@@ -1,7 +1,5 @@
-import java.util.Scanner;
 
 public class Motorista {
-    Scanner scan = new Scanner(System.in);
     String nome;
     int idade;
     String cpf;
