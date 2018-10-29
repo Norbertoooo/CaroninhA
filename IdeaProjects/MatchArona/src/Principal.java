@@ -4,6 +4,20 @@ import java.util.Scanner;
 
 public class Principal {
 
+
+    private static void menuAdmin(){
+        System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
+        System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
+        System.out.println("\t\t\tListar Passageiros ------------- 1");
+        System.out.println("\t\t\tListar Motoristas -------------- 2");
+        System.out.println("\t\t\tAlterar Dados ------------------ 3");
+        System.out.println("\t\t\tExcluir Usuario ---------------- 4");
+        System.out.println("\t\t\tSair da Tela de Admistrador ---- 0");
+        System.out.printf("\t\t\tEntrada: ");
+
+
+    }
+
     private static int menu(){
         Scanner scan = new Scanner(System.in);
         int controleMenu;
@@ -57,7 +71,7 @@ public class Principal {
                 System.out.print("\t\t\tSENHA: ");
                 senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
                 if(admin.compara(login,senha) ){
-                    System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
+                    menuAdmin();
 
                 }
                 break;
@@ -177,9 +191,8 @@ public class Principal {
         Scanner scan = new Scanner(System.in); // declaraçao do scan
         ArrayList listap = new ArrayList(); //lista para os passageiros
         ArrayList listam = new ArrayList(); //lista para os motoristas
-        int controleMenu = menu(); //retorno da funcao menu atribuida a variavel de controle
 
-        switch (controleMenu){
+        switch (menu()){
             case 1:
                 login(admin);
                 break;
