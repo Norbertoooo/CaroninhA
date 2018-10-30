@@ -1,10 +1,21 @@
+public class Motorista extends Usuario{
 
-public class Motorista {
-    String nome;
-    int idade;
-    String cpf;
-    String destino;
-    String senha;
-    String cnh;
-    Carro carro = new Carro();
+    private Carro carro = new Carro();
+
+
+
+
+
+
+
+
+
+
+
+    //getters e setters
+    public Carro getCarro() {
+        return carro;
+    }
+
+
 }

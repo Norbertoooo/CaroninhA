@@ -1,7 +1,3 @@
-public class Passageiro {
-    String nome;
-    int idade;
-    String cpf;
-    String destino;
-    String senha;
+public class Passageiro extends Usuario {
+    private String destino;
 }
