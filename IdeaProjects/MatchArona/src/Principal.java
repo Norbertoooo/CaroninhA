@@ -3,23 +3,65 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Principal {
+    // j para motorista
+    // i para passageiro
+    public static Scanner scan = new Scanner(System.in);
 
-
-    private static void menuAdmin(){
+    private static void menuAdmin(ArrayList listam, ArrayList listap){
         System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
         System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
-        System.out.println("\t\t\tListar Passageiros ------------- 1");
-        System.out.println("\t\t\tListar Motoristas -------------- 2");
-        System.out.println("\t\t\tAlterar Dados ------------------ 3");
-        System.out.println("\t\t\tExcluir Usuario ---------------- 4");
-        System.out.println("\t\t\tSair da Tela de Admistrador ---- 0");
+        System.out.println("\t\t\tListar Motoristas ------------- 1");
+        System.out.println("\t\t\tListar Passageiros ------------ 2");
+        System.out.println("\t\t\tAlterar Dados ----------------- 3");
+        System.out.println("\t\t\tExcluir Usuario --------------- 4");
+        System.out.println("\t\t\tSair da Tela de Administrador - 0");
         System.out.printf("\t\t\tEntrada: ");
+        int controleMenu = scan.nextInt();
+
+
+        switch (controleMenu){
+            case 1:
+                Iterator j = listam.iterator();
+                Motorista motorista = new Motorista();
+                System.out.println("----------- Lista de Motoristas ---------");
+                while ( j.hasNext() ) {
+                    System.out.println("\t\t\t\tDADOS DO MOTORISTA");
+                    motorista = (Motorista) j.next();
+                    System.out.println(motorista.getNome());
+                    System.out.println(motorista.getIdade());
+                    System.out.println(motorista.getCpf());
+                    //System.out.println(motorista.);
+                    System.out.println(motorista.getSenha());
+                    System.out.println(motorista.getCarro().getModelo());
+                    System.out.println(motorista.getCarro().getCnh());
+                    System.out.println(motorista.getCarro().getCor());
+                    System.out.println(motorista.getCarro().getMarca());
+                    System.out.println(motorista.getCarro().getAno());
+                }
+                break;
+            case 2:
+                Iterator i = listap.iterator();
+                Passageiro passageiro = new Passageiro();
+                System.out.println("----------- Lista de Passageiros ---------");
+                while (i.hasNext()) {
+                    System.out.println("\t\t\t\tDADOS DO PASSAGEIRO");
+                    passageiro = (Passageiro) i.next();
+                    System.out.println(passageiro.getNome());
+                    System.out.println(passageiro.getCpf());
+                    System.out.println(passageiro.getIdade());
+                    //System.out.println(passageiro.destino);
+                    System.out.println(passageiro.getSenha());
+                }
+
+                break;
+        }
+
+
 
 
     }
 
-    private static int menu(){
-        Scanner scan = new Scanner(System.in);
+    private static int menuGeral(){
         int controleMenu;
         do {
             System.out.println("**********************************************");
@@ -42,8 +84,7 @@ public class Principal {
 
     }
 
-    private static void login(Admin admin){
-        Scanner scan = new Scanner(System.in); // declaraçao do scan
+    private static void login(Admin admin, ArrayList listam, ArrayList listap ){
         String login;
         String senha;
         System.out.println("\t\t\t\t TELA DE LOGIN");
@@ -58,6 +99,7 @@ public class Principal {
                 login = new Scanner(System.in).nextLine();
                 System.out.print("\t\t\tSENHA: ");
                 senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
+
                 break;
             case 2:
                 System.out.print("\t\t\tLOGIN: ");
@@ -71,7 +113,7 @@ public class Principal {
                 System.out.print("\t\t\tSENHA: ");
                 senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
                 if(admin.compara(login,senha) ){
-                    menuAdmin();
+                    menuAdmin(listam,listap);
 
                 }
                 break;
@@ -81,11 +123,10 @@ public class Principal {
 
     private static void cadastro(ArrayList listam, ArrayList listap){
 
-        Scanner scan = new Scanner(System.in);
         int controleMenu;
         System.out.println("\t\t\t\t TELA DE CADASTRO");
-        System.out.println("\t\t\tCadastrar como motorista  -------------- 1");
-        System.out.println("\t\t\tCadastrar como passageiro -------------- 2");
+        System.out.println("\t\t\tCadastrar como Motorista  -------------- 1");
+        System.out.println("\t\t\tCadastrar como Passageiro -------------- 2");
         System.out.print("\t\t\tEntrada: ");
         controleMenu = scan.nextInt();
         switch (controleMenu) {
@@ -96,56 +137,39 @@ public class Principal {
                 Motorista motorista = new Motorista(); //criando o objeto passageiro
 
                 System.out.print("\t\t\tDigite o nome: ");
-                motorista.nome = new Scanner(System.in).nextLine().toLowerCase();
+                motorista.setNome(new Scanner(System.in).nextLine().toLowerCase());
 
                 System.out.print("\t\t\tDigite a idade: ");
-                motorista.idade = scan.nextInt();
+                motorista.setIdade(scan.nextInt());
 
                 System.out.print("\t\t\tDigite o cpf: ");
-                motorista.cpf = new Scanner(System.in).nextLine();
+                motorista.setCpf(new Scanner(System.in).nextLine());
 
-                System.out.print("\t\t\tDigite o destino: ");
-                motorista.destino = new Scanner(System.in).nextLine().toLowerCase();
+                //System.out.print("\t\t\tDigite o destino: ");
+                // motorista.setdestino ;new Scanner(System.in).nextLine().toLowerCase()
 
                 System.out.print("\t\t\tDigite a senha: ");
-                motorista.senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
+                motorista.setSenha(new Scanner(System.in).nextLine().toLowerCase().replace(" ", ""));
 
                 System.out.print("\t\t\tDigite a cnh: ");
-                motorista.cnh = new Scanner(System.in).nextLine();
+                motorista.getCarro().setCnh(new Scanner(System.in).nextLine());
 
                 System.out.print("\t\t\tDigite o modelo do carro: ");
-                motorista.carro.modelo = new Scanner(System.in).nextLine();
+                motorista.getCarro().setModelo(new Scanner(System.in).nextLine());
 
                 System.out.print("\t\t\tDigite a placa do carro: ");
-                motorista.carro.placa = new Scanner(System.in).nextLine();
+                motorista.getCarro().setPlaca(new Scanner(System.in).nextLine());
 
                 System.out.print("\t\t\tDigite a cor do carro: ");
-                motorista.carro.cor = new Scanner(System.in).nextLine();
+                motorista.getCarro().setCor(new Scanner(System.in).nextLine());
 
                 System.out.print("\t\t\tDigite a marca do carro: ");
-                motorista.carro.marca = new Scanner(System.in).nextLine();
+                motorista.getCarro().setMarca(new Scanner(System.in).nextLine());
 
                 System.out.print("\t\t\tDigite o ano de fabricacao do carro: ");
-                motorista.carro.ano = scan.nextInt();
-
-                // fim do cadastro do motorista
+                motorista.getCarro().setAno(scan.nextInt());
 
                 listam.add(motorista);
-                Iterator j = listam.iterator();
-                while ( j.hasNext() ) {
-                    System.out.println("\t\t\t\tDADOS DO MOTORISTA");
-                    motorista = (Motorista) j.next();
-                    System.out.println(motorista.nome);
-                    System.out.println(motorista.idade);
-                    System.out.println(motorista.cpf);
-                    System.out.println(motorista.destino);
-                    System.out.println(motorista.senha);
-                    System.out.println(motorista.carro.modelo);
-                    System.out.println(motorista.carro.placa);
-                    System.out.println(motorista.carro.cor);
-                    System.out.println(motorista.carro.marca);
-                    System.out.println(motorista.carro.ano);
-                }
                 break;
 
 
@@ -156,50 +180,43 @@ public class Principal {
                 Passageiro passageiro = new Passageiro(); //criando o objeto passageiro
 
                 System.out.print("\t\t\tDigite o nome: ");
-                passageiro.nome = new Scanner(System.in).nextLine().toLowerCase();
+                passageiro.setNome(new Scanner(System.in).nextLine().toLowerCase());
 
                 System.out.print("\t\t\tDigite a idade: ");
-                passageiro.idade = scan.nextInt();
+                passageiro.setIdade(scan.nextInt());
 
                 System.out.print("\t\t\tDigite o cpf: ");
-                passageiro.cpf = new Scanner(System.in).nextLine();
+                passageiro.setCpf(new Scanner(System.in).nextLine());
 
-                System.out.print("\t\t\tDigite o destino: ");
-                passageiro.destino = new Scanner(System.in).nextLine().toLowerCase();
+                //System.out.print("\t\t\tDigite o destino: ");
+                //passageiro.destino = new Scanner(System.in).nextLine().toLowerCase();
 
                 System.out.print("\t\t\tDigite a senha: ");
-                passageiro.senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
+                passageiro.setSenha(new Scanner(System.in).nextLine().toLowerCase().replace(" ", ""));
 
                 listap.add(passageiro); //adicionando a lista de passageiros
-                Iterator i = listap.iterator();
-                while (i.hasNext()) {
-                    System.out.println("\t\t\t\tDADOS DO PASSAGEIRO");
-                    passageiro = (Passageiro) i.next();
-                    System.out.println(passageiro.nome);
-                    System.out.println(passageiro.cpf);
-                    System.out.println(passageiro.idade);
-                    System.out.println(passageiro.destino);
-                    System.out.println(passageiro.senha);
-                }
 
                 break;
         } // switch
 }
 
     public static void main(String[] args) {
+
         Admin admin = new Admin(); //objeto admin
-        Scanner scan = new Scanner(System.in); // declaraçao do scan
         ArrayList listap = new ArrayList(); //lista para os passageiros
         ArrayList listam = new ArrayList(); //lista para os motoristas
+        do {
+            switch (menuGeral()){
+                case 1:
+                    login(admin,listam,listap);
+                    break;
+                case 2:
+                    cadastro(listam,listap);
+                    break;
+            }//switch menu
 
-        switch (menu()){
-            case 1:
-                login(admin);
-                break;
-            case 2:
-                cadastro(listam,listap);
-                break;
-        }//switch menu
+        }while( menuGeral() !=0 );
+
 
     }//main
 
