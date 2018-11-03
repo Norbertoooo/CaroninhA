@@ -10,14 +10,6 @@ public class Carro {
 
 
 
-
-
-
-
-
-
-
-
     // getters e setters
     public String getModelo() {
         return modelo;
