@@ -9,8 +9,11 @@ public class Principal {
     public static Scanner scan = new Scanner(System.in); //scanner universal
     public static Motorista motorista = new Motorista(); // instanciando objeto para todas as funcoes
     public static Passageiro passageiro = new Passageiro(); // instanciando objeto para todas as funcoes
+    public static Admin admin = new Admin(); //objeto admin
+    public static ArrayList listap = new ArrayList(); //lista para os passageiros
+    public static  ArrayList listam = new ArrayList(); //lista para os motoristas
 
-    private static void exibirMotorista(ArrayList listam) {
+    private static void exibirMotorista() {
         Iterator j = listam.iterator();
         while (j.hasNext()) {
             System.out.println("\t\t\t\tDADOS DO MOTORISTA");
@@ -28,7 +31,7 @@ public class Principal {
 
     }
 
-    private static void exibirPassageiros(ArrayList listap) {
+    private static void exibirPassageiros() {
         Iterator i = listap.iterator();
         while (i.hasNext()) {
             System.out.println("\t\t\t\tDADOS DO PASSAGEIRO");
@@ -42,7 +45,7 @@ public class Principal {
 
     }
 
-    private static void alterarDados(ArrayList listam, ArrayList listap) {
+    private static void alterarDados() {
         System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
         System.out.println("\t\t\t\tFunção: ALTERAR DADOS");
         System.out.print("\t\t\tDigite o cpf: ");
@@ -185,7 +188,7 @@ public class Principal {
         }
     }
 
-    private static void excluirDados(ArrayList listam, ArrayList listap) {
+    private static void excluirDados() {
         System.out.println("\t\t\t\tTela de Administrador");
         System.out.println("\t\t\t\tFunção: Exclusão");
         System.out.println("\t\t\tDigite o cpf de quem deseja excluir: ");
@@ -238,38 +241,38 @@ public class Principal {
             }
         }
 
-    private static void menuAdmin(ArrayList listam, ArrayList listap){
-        System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
-        System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
-        System.out.println("\t\t\tListar Motoristas ------------- 1");
-        System.out.println("\t\t\tListar Passageiros ------------ 2");
-        System.out.println("\t\t\tAlterar Dados ----------------- 3");
-        System.out.println("\t\t\tExcluir Usuario --------------- 4");
-        System.out.println("\t\t\tSair da Tela de Administrador - 0");
-        System.out.printf("\t\t\tEntrada: ");
-        int controleMenu = scan.nextInt();
+    private static void menuAdmin(){
+        int controleMenu;
+        do{
+            System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
+            System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
+            System.out.println("\t\t\tListar Motoristas ------------- 1");
+            System.out.println("\t\t\tListar Passageiros ------------ 2");
+            System.out.println("\t\t\tAlterar Dados ----------------- 3");
+            System.out.println("\t\t\tExcluir Usuario --------------- 4");
+            System.out.println("\t\t\tSair da Tela de Administrador - 0");
+            System.out.printf("\t\t\tEntrada: ");
+                controleMenu = scan.nextInt();
+                switch (controleMenu) {
+                    case 1:
+                        System.out.println("----------- Lista de Motoristas ---------");
+                        exibirMotorista();
+                        break;
+                    case 2:
+                        System.out.println("----------- Lista de Passageiros ---------");
+                        exibirPassageiros();
+                        break;
+                    case 3:
+                        alterarDados();
+                        break;
+                    case 4:
+                        excluirDados();
+                        break;
 
-        do {
-            switch (controleMenu) {
-                case 1:
-                    System.out.println("----------- Lista de Motoristas ---------");
-                    exibirMotorista(listam);
-                    break;
-                case 2:
-                    System.out.println("----------- Lista de Passageiros ---------");
-                    exibirPassageiros(listap);
-                    break;
-                case 3:
-                    alterarDados(listam, listap);
-                    break;
-                case 4:
-                    excluirDados(listam, listap);
-                    break;
 
-
-                default:
-                    System.out.println("Entrada invalida");
-            }
+                    default:
+                        System.out.println("Entrada invalida");
+                }
         }while (controleMenu != 0 );
 
 
@@ -292,7 +295,7 @@ public class Principal {
         return controleMenu;
     }
 
-    private static void login(Admin admin, ArrayList listam, ArrayList listap ){
+    private static void login( ){
         // erro        java.util.InputMismatchException
         String login;
         String senha;
@@ -324,7 +327,7 @@ public class Principal {
                 senha = new Scanner(System.in).nextLine().toLowerCase().replace(" ", "");
                 if(admin.compara(login,senha) ){
 
-                    menuAdmin(listam,listap);
+                    menuAdmin();
 
                 }
                 break;
@@ -332,7 +335,7 @@ public class Principal {
         //fim tela de login
     }
 
-    private static void cadastro(ArrayList listam, ArrayList listap){
+    private static void cadastro(){
         int controleMenu;
         System.out.println("\t\t\t\t TELA DE CADASTRO");
         System.out.println("\t\t\tCadastrar como Motorista  -------------- 1");
@@ -405,22 +408,23 @@ public class Principal {
                     listap.add(passageiro); //adicionando a lista de passageiros
 
                     break;
+                case 0:
+                    break;
             }
 }
 
     public static void main(String[] args) {
-
-        Admin admin = new Admin(); //objeto admin
-        ArrayList listap = new ArrayList(); //lista para os passageiros
-        ArrayList listam = new ArrayList(); //lista para os motoristas
-        int decisao = menuGeral();
+        int decisao;
         do {
+            decisao = menuGeral();
             switch (decisao) {
                 case 1:
-                    login(admin, listam, listap);
+                    login();
                     break;
                 case 2:
-                    cadastro(listam, listap);
+                    cadastro();
+                    break;
+                case 0:
                     break;
             }
         }while ( decisao != 0 );
