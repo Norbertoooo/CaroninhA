@@ -36,11 +36,12 @@ public class Principal {
         while (i.hasNext()) {
             System.out.println("\t\t\t\tDADOS DO PASSAGEIRO");
             passageiro = (Passageiro) i.next();
-            System.out.println(passageiro.getNome());
-            System.out.println(passageiro.getCpf());
-            System.out.println(passageiro.getIdade());
+            System.out.println("\t\t\tNome: "+ passageiro.getNome());
+            System.out.println("\t\t\tCpf: "+passageiro.getCpf());
+            System.out.println("\t\t\tIdade: "+passageiro.getIdade());
             //System.out.println(passageiro.destino);
-            System.out.println(passageiro.getSenha());
+            System.out.println("\t\t\tSenha: "+passageiro.getSenha());
+            System.out.println("\t\t\t--------------------------------------");
         }
 
     }
@@ -52,15 +53,13 @@ public class Principal {
         String cpf = new Scanner(System.in).nextLine();
         Iterator j = listam.iterator();
         Iterator i = listap.iterator();
-        int posicao;
+
         while (j.hasNext()) {
             motorista = (Motorista) j.next();
             if (cpf.equals(motorista.getCpf())) {
                 System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
                 System.out.println("\t\t\t\tFunção: ALTERAR DADOS");
                 System.out.println("\t\t\t\t Encontrado");
-                posicao = listam.indexOf(motorista);
-                System.out.println(posicao);
                 System.out.println("\t\t\t\tDADOS DO MOTORISTA");
                 System.out.println("\t\t\tNome: " + motorista.getNome());
                 System.out.println("\t\t\tIdade: " + motorista.getIdade());
@@ -143,8 +142,6 @@ public class Principal {
                 System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
                 System.out.println("\t\t\t\tFunção: ALTERAR DADOS");
                 System.out.println("\t\t\t\t Encontrado");
-                posicao = listap.indexOf(passageiro);
-                System.out.println(posicao);
                 System.out.println("\t\t\t\tDADOS DO PASSAGEIRO");
                 System.out.println("\t\t\tNome: " + passageiro.getNome());
                 System.out.println("\t\t\tCPF: " + passageiro.getCpf());
@@ -156,26 +153,26 @@ public class Principal {
                 System.out.println("\t\t\tIdade ------------- 2");
                 System.out.println("\t\t\tCPF --------------- 3");
                 System.out.println("\t\t\tSenha ------------- 4");
-                System.out.println("\t\t\tEntrada: ");
+                System.out.print("\t\t\tEntrada: ");
                 int entrada = scan.nextInt();
                 switch (entrada) {
                     case 1:
-                        System.out.println("\t\t\tDigite o novo nome: ");
+                        System.out.print("\t\t\tDigite o novo nome: ");
                         String nome = new Scanner(System.in).nextLine();
                         passageiro.setNome(nome);
                         break;
                     case 2:
-                        System.out.println("\t\t\tDigite a nova idade: ");
+                        System.out.print("\t\t\tDigite a nova idade: ");
                         int idade = new Scanner(System.in).nextInt();
                         passageiro.setIdade(idade);
                         break;
                     case 3:
-                        System.out.println("\t\t\tDigite o novo CPF: ");
+                        System.out.print("\t\t\tDigite o novo CPF: ");
                         String CPF = new Scanner(System.in).nextLine();
                         passageiro.setCpf(CPF);
                         break;
                     case 4:
-                        System.out.println("\t\t\tDigite o nova senha: ");
+                        System.out.print("\t\t\tDigite o nova senha: ");
                         String senha = new Scanner(System.in).nextLine();
                         passageiro.setSenha(senha);
                         break;
@@ -191,11 +188,10 @@ public class Principal {
     private static void excluirDados() {
         System.out.println("\t\t\t\tTela de Administrador");
         System.out.println("\t\t\t\tFunção: Exclusão");
-        System.out.println("\t\t\tDigite o cpf de quem deseja excluir: ");
+        System.out.print("\t\t\tDigite o cpf de quem deseja excluir: ");
         String conta = new Scanner(System.in).nextLine();
         Iterator j = listam.iterator();
         Iterator i = listap.iterator();
-        int posicao;
         while (j.hasNext()) {
             motorista = (Motorista) j.next();
             if (conta.equals(motorista.getCpf())) {
@@ -230,10 +226,12 @@ public class Principal {
                 System.out.println("\t\t\tTem certeza que deseja excluir?");
                 System.out.println("\t\t\tSIM -------------------------- 1");
                 System.out.println("\t\t\tNÃO -------------------------- 2");
+                System.out.print("\t\t\tEntrada: ");
                 int escolha = scan.nextInt();
                 if(escolha == 1) {
                     listap.remove(passageiro);
                     System.out.println("\t\t\tremovido com sucesso");
+                    break;
                 }else System.out.println("Operação cancelada");
             }
 
@@ -244,7 +242,7 @@ public class Principal {
     private static void menuAdmin(){
         int controleMenu;
         do{
-            System.out.println("\t\tACESSO DE ADMINISTRADOR INICIADO");
+            System.out.println("\t\t\tACESSO DE ADMINISTRADOR INICIADO");
             System.out.println("\t\t\t\tTELA DE ADMINISTRADOR");
             System.out.println("\t\t\tListar Motoristas ------------- 1");
             System.out.println("\t\t\tListar Passageiros ------------ 2");
@@ -255,11 +253,11 @@ public class Principal {
                 controleMenu = scan.nextInt();
                 switch (controleMenu) {
                     case 1:
-                        System.out.println("----------- Lista de Motoristas ---------");
+                        System.out.println("\t\t----------- Lista de Motoristas ---------");
                         exibirMotorista();
                         break;
                     case 2:
-                        System.out.println("----------- Lista de Passageiros ---------");
+                        System.out.println("\t\t----------- Lista de Passageiros ---------");
                         exibirPassageiros();
                         break;
                     case 3:
