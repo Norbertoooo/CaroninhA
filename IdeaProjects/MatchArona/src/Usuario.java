@@ -1,20 +1,10 @@
-public class Usuario {
+public abstract class Usuario {
 
     private String nome;
     private int idade;
     private String cpf;
-    private String Senha;
-
-
-
-
-
-
-
-
-
-
-
+    private String senha;
+    private String destino;
 
 
 
@@ -44,10 +34,18 @@ public class Usuario {
     }
 
     public String getSenha() {
-        return Senha;
+        return this.senha;
     }
 
     public void setSenha(String senha) {
-        Senha = senha;
+        this.senha = senha;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
 }
