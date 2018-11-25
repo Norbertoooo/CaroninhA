@@ -264,6 +264,7 @@ public class Principal {
                 if(escolha == 1) {
                     listam.remove(motorista);
                     System.out.println("\t\t\tremovido com sucesso");
+                    break;
                 }else System.out.println("Operação cancelada");
             }
         }
